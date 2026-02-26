@@ -1,74 +1,139 @@
-__pycache__
-*.egg-info
-dickens/
-book.txt
-AtomRAG-dev/
-.idea/
-dist/
-env/
-local_neo4jWorkDir/
-neo4jWorkDir/
-ignore_this.txt
-.venv/
-*.ignore.*
-.ruff_cache/
-gui/
-*.log
-.vscode
-inputs
-rag_storage
-.env
-venv/
-examples/input/
-examples/output/
-.DS_Store
-#Remove config.ini from repo
-*.ini
-# ===== Python =====
+# __pycache__
+# *.egg-info
+# dickens/
+# book.txt
+# AtomRAG-dev/
+# .idea/
+# dist/
+# env/
+# local_neo4jWorkDir/
+# neo4jWorkDir/
+# ignore_this.txt
+# .venv/
+# *.ignore.*
+# .ruff_cache/
+# gui/
+# *.log
+# .vscode
+# inputs
+# rag_storage
+# .env
+# venv/
+# examples/input/
+# examples/output/
+# .DS_Store
+# #Remove config.ini from repo
+# *.ini
+# # ===== Python =====
+# __pycache__/
+# *.pyc
+# *.pyo
+# *.pyd
+# *.egg-info/
+
+# # ===== Environment =====
+# .env
+# .env.*
+# *.key
+# *.pem
+
+# # ===== Data / Logs =====
+# datasets/
+# data/
+# logs/
+# *.log
+# *.json
+# *.jsonl
+# *.txt
+
+# # ===== Models / Cache =====
+# models/
+# checkpoints/
+# cache/
+# embeddings/
+# vector_db/
+
+# # ===== Docker =====
+# *.tar
+# *.img
+
+# # ===== VSCode =====
+# .vscode/
+
+# # ===== OS =====
+# .DS_Store
+# # ===== Data / Experimental Outputs =====
+# Documents/
+# saved_contexts/
+# gpt2_tokenizer/
+# *.txt
+# *.json
+# *.jsonl
+
+# # ===== Evaluation & Temporary Scripts =====
+# test.py
+# eval_*.py
+# make_unique_context_*.py
+# connection_graph_*.py
+# AtomRAG/llm/groq*.py
+
+# # ===== OS / Editor =====
+# .vscode/
+# .DS_Store
+# .yaml
+
+# # ===== folder =====
+# sillok/
+# sillok_full/
+# datasets/
+
+# Python cache
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.egg-info/
+*.py[cod]
+*$py.class
 
-# ===== Environment =====
-.env
-.env.*
-*.key
-*.pem
+# Virtual environment
+venv/
+.venv/
+env/
+ENV/
 
-# ===== Data / Logs =====
-datasets/
-data/
-logs/
-*.log
-*.json
-*.jsonl
-*.txt
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
 
-# ===== Models / Cache =====
-models/
-checkpoints/
-cache/
-embeddings/
-vector_db/
+# pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
 
-# ===== Docker =====
-*.tar
-*.img
+# mypy
+.mypy_cache/
 
-# ===== VSCode =====
+# Jupyter
+.ipynb_checkpoints/
+
+# VSCode
 .vscode/
 
-# ===== OS =====
+# PyCharm
+.idea/
+
+# macOS
 .DS_Store
-# ===== Data / Experimental Outputs =====
-Documents/
-saved_contexts/
-gpt2_tokenizer/
-*.txt
-*.json
-*.jsonl
+
+# Environment variables
+.env
+.env.*
+
+# Logs
+*.log
+logs/
+
+# ===== folder =====
+sillok/
+sillok_full/
+datasets/
 
 # ===== Evaluation & Temporary Scripts =====
 test.py
@@ -76,13 +141,3 @@ eval_*.py
 make_unique_context_*.py
 connection_graph_*.py
 AtomRAG/llm/groq*.py
-
-# ===== OS / Editor =====
-.vscode/
-.DS_Store
-.yaml
-
-# ===== folder =====
-sillok/
-sillok1/
-datasets/
