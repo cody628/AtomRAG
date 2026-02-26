@@ -1,0 +1,35 @@
+accelerate
+aiofiles
+aiohttp
+configparser
+
+# File manipulation libraries
+docling
+graspologic
+
+# database packages
+networkx
+
+# Basic modules
+numpy
+pipmaster
+pydantic
+python-dotenv
+
+setuptools
+tenacity
+
+
+# LLM packages
+tiktoken
+tqdm
+xxhash
+openai
+google-genai
+
+-e .
+
+# Extra libraries are installed when needed using pipmaster
+
+fastapi
+uvicorn

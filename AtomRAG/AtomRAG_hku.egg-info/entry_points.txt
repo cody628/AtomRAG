@@ -1,0 +1,3 @@
+[console_scripts]
+AtomRAG-server = AtomRAG.api.AtomRAG_server:main [api]
+AtomRAG-viewer = AtomRAG.tools.AtomRAG_visualizer.graph_visualizer:main [tools]

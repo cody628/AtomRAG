@@ -353,7 +353,6 @@ class AtomRAG:
         ####
         # add embedding func by walter over
         ####
-
         self.atomic_entities_vdb = self.vector_db_storage_cls(
             namespace=make_namespace(
                 self.namespace_prefix, NameSpace.atomic_VECTOR_STORE_ENTITIES
@@ -361,6 +360,7 @@ class AtomRAG:
             embedding_func=self.embedding_func,
             meta_fields={"entity_name"},
         )
+        
         self.atomic_relationships_vdb = self.vector_db_storage_cls(
             namespace=make_namespace(
                 self.namespace_prefix, NameSpace.atomic_VECTOR_STORE_RELATIONSHIPS
@@ -694,7 +694,6 @@ class AtomRAG:
                 chunk,
                 atomic_entity_vdb=self.atomic_entities_vdb,
                 triple_entity_vdb=self.triple_entities_vdb,
-                # llm_response_cache=self.llm_response_cache,
                 global_config=asdict(self),
             )
         except Exception as e:

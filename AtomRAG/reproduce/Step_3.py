@@ -14,11 +14,11 @@ async def process_query(query_text, rag_instance, query_param):
         return None, {"query": query_text, "error": str(e)}
 
 async def main():
-    cls = "sillok1"
+    cls = "sillok"
     query_mode = "experiment3"
     mode = "ours_experiment1"
     top = 7
-    query_text = "1412년 5월 경상도에 어떤 자연재해가 발생하였는가?"
+    query_text = "태종이 회암사 승려의 불사(佛事)를 문제 삼지 말라고 한 이유는 무엇인가?"
     WORKING_DIR = f"../{cls}"
 
     rag = AtomRAG(

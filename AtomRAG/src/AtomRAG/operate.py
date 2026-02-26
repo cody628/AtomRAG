@@ -4378,7 +4378,6 @@ GLOBAL_TOKEN_LOG = {
     "total_tokens": 0,
 }
 
-
 ####### 일반 chunk를 넣어주고 cot방식의 generation을 사용한 방법#########
 async def ours_kg_query_experiment1(
     query: str,

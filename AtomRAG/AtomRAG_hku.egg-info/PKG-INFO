@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: AtomRAG-hku
+Version: 1.1.6
+Summary: AtomRAG: Simple and Fast Retrieval-Augmented Generation
+Home-page: https://github.com/HKUDS/AtomRAG
+Author: ZiruiGuo
+Project-URL: Documentation, https://github.com/HKUDS/AtomRAG
+Project-URL: Source, https://github.com/HKUDS/AtomRAG
+Project-URL: Tracker, https://github.com/HKUDS/AtomRAG/issues
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Provides-Extra: api
+Provides-Extra: tools
+License-File: LICENSE
+
+A description of AtomRAG is currently unavailable.

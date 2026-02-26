@@ -14,7 +14,6 @@ import json
 import time
 from dotenv import load_dotenv
 from datetime import datetime
-
 # from src.naiveRAG import NaiveRAG
 # from src.FRAG import FRAG
 from src.AtomRAG.llm.gemini import gemini_complete, gemini_embed
@@ -338,7 +337,13 @@ async def startup_event():
         if method_name == 'AtomRAG':
             cls = dataset_name
             WORKING_DIR = f"../{cls}"
-            rag_system = AtomRAG(working_dir=WORKING_DIR, embedding_func=gemini_embed(model = embedding_model), llm_model_func=gemini_complete(model = llm_model),)
+
+            rag_system = AtomRAG(
+                working_dir=WORKING_DIR,
+                embedding_func=gemini_embed,    
+                llm_model_func=gemini_complete,   
+            )
+            
         else:
             raise ValueError(f"Invalid method_name: {method_name}")
         
