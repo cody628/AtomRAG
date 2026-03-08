@@ -25,7 +25,7 @@ pip install -r requirements.txt
 # 🔑 3. Set API Key
 export GEMINI_API_KEY="YOUR_API_KEY"
 
-# 📚 4. Dataset Location & bm25 db construction
+# 📚 4. Dataset Location & DB construction for BM25
 /workspace/AtomRAG/sillok
 python build_atomic_bm25.py
 
