@@ -27,6 +27,7 @@ export GEMINI_API_KEY="YOUR_API_KEY"
 
 # 📚 4. Dataset Location & DB construction for BM25
 /workspace/AtomRAG/sillok
+
 python build_atomic_bm25.py
 
 # 🧠 5. Single Query Inference (CLI)
