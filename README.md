@@ -25,8 +25,9 @@ pip install -r requirements.txt
 # 🔑 3. Set API Key
 export GEMINI_API_KEY="YOUR_API_KEY"
 
-# 📚 4. Dataset Location
+# 📚 4. Dataset Location & bm25 db construction
 /workspace/AtomRAG/sillok
+python build_atomic_bm25.py
 
 # 🧠 5. Single Query Inference (CLI)
 query_text = "태종이 회암사 승려의 불사(佛事)를 문제 삼지 말라고 한 이유는 무엇인가?"
