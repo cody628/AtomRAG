@@ -17,21 +17,43 @@ async def main():
     cls = "sillok"
     query_mode = "experiment3"
     mode = "ours_experiment1"
-    top = 7
+    top = 30
     query_text = "태종이 회암사 승려의 불사(佛事)를 문제 삼지 말라고 한 이유는 무엇인가?"
     WORKING_DIR = f"../{cls}"
 
+    # rag = AtomRAG(
+    #     working_dir=WORKING_DIR,
+    #     embedding_func=gemini_embed,
+    #     llm_model_func=gemini_complete,
+    # )
+    
     rag = AtomRAG(
         working_dir=WORKING_DIR,
         embedding_func=gemini_embed,
         llm_model_func=gemini_complete,
+        addon_params={
+            "use_atomic_bm25": True,
+            "atomic_bm25_topk": 2000,
+            "atomic_bm25_db_path": f"{WORKING_DIR}/atomic_bm25.db",
+        },
     )
 
+    # query_param = QueryParam(
+    #     mode=mode,
+    #     query_mode=query_mode,
+    #     top_mode=top,
+    #     addon_params={"embedding_func": rag.embedding_func},
+    # )
     query_param = QueryParam(
         mode=mode,
         query_mode=query_mode,
         top_mode=top,
-        addon_params={"embedding_func": rag.embedding_func},
+        addon_params={
+            "embedding_func": rag.embedding_func,
+            "use_atomic_bm25": True,
+            "atomic_bm25_topk": 2000,
+            "atomic_bm25_db_path": f"{WORKING_DIR}/atomic_bm25.db",
+        },
     )
 
     ok, err = await process_query(query_text, rag, query_param)

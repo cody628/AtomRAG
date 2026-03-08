@@ -353,13 +353,25 @@ class AtomRAG:
         ####
         # add embedding func by walter over
         ####
-        self.atomic_entities_vdb = self.vector_db_storage_cls(
-            namespace=make_namespace(
-                self.namespace_prefix, NameSpace.atomic_VECTOR_STORE_ENTITIES
-            ),
-            embedding_func=self.embedding_func,
-            meta_fields={"entity_name"},
-        )
+        # self.atomic_entities_vdb = self.vector_db_storage_cls(
+        #     namespace=make_namespace(
+        #         self.namespace_prefix, NameSpace.atomic_VECTOR_STORE_ENTITIES
+        #     ),
+        #     embedding_func=self.embedding_func,
+        #     meta_fields={"entity_name"},
+        # )
+        use_atomic_bm25 = self.addon_params.get("use_atomic_bm25", False)
+
+        if use_atomic_bm25:
+            self.atomic_entities_vdb = None
+        else:
+            self.atomic_entities_vdb = self.vector_db_storage_cls(
+                namespace=make_namespace(
+                    self.namespace_prefix, NameSpace.atomic_VECTOR_STORE_ENTITIES
+                ),
+                embedding_func=self.embedding_func,
+                meta_fields={"entity_name"},
+            )
         
         self.atomic_relationships_vdb = self.vector_db_storage_cls(
             namespace=make_namespace(

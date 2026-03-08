@@ -4362,6 +4362,48 @@ async def ours_kg_query_experiment0(
     
 #     return final_response
 
+import re
+import sqlite3
+import json
+
+def sanitize_fts_query(text: str) -> str:
+    text = re.sub(r'[^\w\s가-힣一-龥]', ' ', text)
+    terms = [t for t in text.split() if t.strip()]
+    if not terms:
+        return ""
+    return " OR ".join([f'"{t}"' for t in terms])
+
+def bm25_atomic_search(db_path: str, query: str, top_k: int = 2000):
+    safe_query = sanitize_fts_query(query)
+    if not safe_query:
+        return []
+
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+
+    sql = """
+    SELECT atomic_id, content, source_ids, -bm25(atomic_fts) AS score
+    FROM atomic_fts
+    WHERE atomic_fts MATCH ?
+    ORDER BY score DESC
+    LIMIT ?
+    """
+    cur.execute(sql, (safe_query, top_k))
+    rows = cur.fetchall()
+    conn.close()
+
+    results = []
+    for row in rows:
+        results.append({
+            "id": row["atomic_id"],
+            "entity_name": row["content"],
+            "distance": row["score"],
+            "source_ids": json.loads(row["source_ids"]),
+            "content": row["content"],
+        })
+    return results
+
 def compute_cost(token_log):
     prompt_cost = token_log["prompt_tokens"] / 1_000_000 * 0.15
     completion_cost = token_log["completion_tokens"] / 1_000_000 * 0.60
@@ -4424,10 +4466,33 @@ async def ours_kg_query_experiment1(
 
     print(f"[INFO] Retrieving atomic facts for {len(queries)} subqueries...")
 
+    # async def fetch_atomic_facts(sq):
+    #     try:
+    #         results = await atomic_entities_vdb.query(sq, top_k=100)
+    #         return sq, results
+    #     except Exception as e:
+    #         print(f"[ERROR] Retrieval failed for '{sq}': {e}")
+    #         return sq, []
     async def fetch_atomic_facts(sq):
         try:
-            results = await atomic_entities_vdb.query(sq, top_k=20)
+            use_atomic_bm25 = global_config.get("addon_params", {}).get("use_atomic_bm25", False)
+            bm25_topk = global_config.get("addon_params", {}).get("atomic_bm25_topk", 2000)
+            bm25_db_path = global_config.get("addon_params", {}).get(
+                "atomic_bm25_db_path",
+                os.path.join(global_config["working_dir"], "atomic_bm25.db")
+            )
+
+            if use_atomic_bm25:
+                results = bm25_atomic_search(
+                    db_path=bm25_db_path,
+                    query=sq,
+                    top_k=bm25_topk,
+                )
+            else:
+                results = await atomic_entities_vdb.query(sq, top_k=100)
+
             return sq, results
+
         except Exception as e:
             print(f"[ERROR] Retrieval failed for '{sq}': {e}")
             return sq, []

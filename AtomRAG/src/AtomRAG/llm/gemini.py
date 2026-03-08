@@ -367,7 +367,7 @@ async def gemini_complete_if_cache(
 
 async def gemini_complete(
     prompt,
-    model="gemini-2.5-flash",
+    model="gemini-3-flash-preview",
     system_prompt=None,
     history_messages=None,
     keyword_extraction=False,
