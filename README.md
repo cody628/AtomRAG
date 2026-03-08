@@ -16,10 +16,15 @@ docker run --runtime=nvidia -e NVIDIA_VISIBLE_DEVICES=0,1,2,3 --volume ~/workspa
 
 # 📦 2. Install Dependencies
 apt update
+
 apt install -y git
+
 git --version
+
 git clone https://github.com/cody628/AtomRAG.git
+
 cd AtomRAG/AtomRAG
+
 pip install -r requirements.txt
 
 # 🔑 3. Set API Key
@@ -32,12 +37,14 @@ python build_atomic_bm25.py
 
 # 🧠 5. Single Query Inference (CLI)
 query_text = "태종이 회암사 승려의 불사(佛事)를 문제 삼지 말라고 한 이유는 무엇인가?"
+
 python reproduce/Step_3.py
 
 # 🌐 5. Run FastAPI Server
 python api_server.py
 
 apt update
+
 apt install -y curl
 
 curl -v --max-time 120 \
